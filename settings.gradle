@@ -1,0 +1,6 @@
+rootProject.name = 'jabref.controls'
+
+includeBuild(".")
+dependencyResolutionManagement {
+    repositories.mavenCentral()
+}
