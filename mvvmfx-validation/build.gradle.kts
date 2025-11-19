@@ -1,27 +1,35 @@
+import com.vanniktech.maven.publish.JavaLibrary
+import com.vanniktech.maven.publish.JavadocJar
+
 plugins {
-    id("org.jabref.gradle.module")
+    id("org.jabref.javafx.controls.gradle.module")
     id("java-library")
     id("com.vanniktech.maven.publish") version "0.35.0"
-
 }
 
+var version: String = project.findProperty("projVersion")?.toString() ?: "0.1.0"
+if (project.findProperty("tagbuild")?.toString() != "true") {
+    version += "-SNAPSHOT"
+}
 
 dependencies {
     // api(platform(project(":versions")))
-
     implementation("org.openjfx:javafx-base")
 }
 
+
 mavenPublishing {
-    configure(JavaLibrary(
-        // configures the -javadoc artifact, possible values:
-        // - `JavadocJar.None()` don't publish this artifact
-        // - `JavadocJar.Empty()` publish an emprt jar
-        // - `JavadocJar.Javadoc()` to publish standard javadocs
-        javadocJar = JavadocJar.Javadoc(),
-        // whether to publish a sources jar
-        sourcesJar = true,
-    ))
+    configure(
+        JavaLibrary(
+            // configures the -javadoc artifact, possible values:
+            // - `JavadocJar.None()` don't publish this artifact
+            // - `JavadocJar.Empty()` publish an emprt jar
+            // - `JavadocJar.Javadoc()` to publish standard javadocs
+            javadocJar = JavadocJar.Javadoc(),
+            // whether to publish a sources jar
+            sourcesJar = true,
+        )
+    )
 
     publishToMavenCentral()
     signAllPublications()
