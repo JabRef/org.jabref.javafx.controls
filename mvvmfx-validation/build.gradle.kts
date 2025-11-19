@@ -13,7 +13,6 @@ if (project.findProperty("tagbuild")?.toString() != "true") {
 }
 
 dependencies {
-    // api(platform(project(":versions")))
     implementation("org.openjfx:javafx-base")
 }
 
