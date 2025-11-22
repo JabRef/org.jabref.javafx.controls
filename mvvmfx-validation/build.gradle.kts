@@ -12,6 +12,9 @@ if (project.findProperty("tagbuild")?.toString() != "true") {
     version += "-SNAPSHOT"
 }
 
+
+group = "org.jabref.javafx.controls"
+
 dependencies {
     implementation("org.openjfx:javafx-base")
 }

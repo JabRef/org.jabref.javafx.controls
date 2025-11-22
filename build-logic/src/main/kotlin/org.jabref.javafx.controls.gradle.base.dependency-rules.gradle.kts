@@ -7,7 +7,7 @@ plugins {
 javaModuleDependencies {
     // TODO remove to translate 'requires' from 'module-info.java' to Gradle dependencies
     //      and remove 'dependencies {}' block from build.gradle files
-    analyseOnly = true
+    analyseOnly = true // makes no difference
 }
 
 jvmDependencyConflicts {
