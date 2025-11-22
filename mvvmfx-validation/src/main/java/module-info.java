@@ -1,3 +1,3 @@
 module mvvmfx.validation {
-   requires javafx.baseEmpty;
+   requires javafx.base;
 }

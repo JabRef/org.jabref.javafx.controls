@@ -14,6 +14,7 @@ if (project.findProperty("tagbuild")?.toString() != "true") {
 
 dependencies {
     implementation("org.openjfx:javafx-base")
+    implementation("org.openjfx:javafx-controls")
 }
 
 

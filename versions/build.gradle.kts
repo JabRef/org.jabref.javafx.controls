@@ -13,12 +13,7 @@ val os =
     DefaultNativePlatform.getCurrentOperatingSystem()
 val arch =
     DefaultNativePlatform.getCurrentArchitecture()
-val javafx =
-    if (os.isLinux && arch.name.equals(
-            "aarch64",
-            ignoreCase = true
-        )
-    ) "25" else "25.0.1"
+val javafx = 24
 
 
 dependencies.constraints {
@@ -29,6 +24,6 @@ dependencies.constraints {
     api("org.openjfx:javafx-swing:$javafx")
     api("org.openjfx:javafx-web:$javafx")
     // from JavaFX25 onwards
-    api("org.openjfx:jdk-jsobject:$javafx")
+  //  api("org.openjfx:jdk-jsobject:$javafx")
 
 }
