@@ -1,5 +1,3 @@
-import org.gradle.api.internal.artifacts.dsl.dependencies.DependenciesExtensionModule.module
-
 plugins {
     id("org.gradlex.extra-java-module-info")
     id("org.gradlex.jvm-dependency-conflict-resolution")
@@ -9,13 +7,12 @@ plugins {
 javaModuleDependencies {
     // TODO remove to translate 'requires' from 'module-info.java' to Gradle dependencies
     //      and remove 'dependencies {}' block from build.gradle files
+    analyseOnly = true
 }
 
 jvmDependencyConflicts {
     consistentResolution {
-        platform(
-            ":versions"
-        )
+        platform(":versions")
     }
 }
 
@@ -24,12 +21,6 @@ jvmDependencyConflicts {
 jvmDependencyConflicts.patch {
     listOf(
         "base",
-        "controls",
-        "fxml",
-        "graphics",
-        "swing",
-        "web",
-        "media"
     ).forEach { jfxModule ->
         module(
             "org.openjfx:javafx-$jfxModule"
@@ -65,5 +56,15 @@ jvmDependencyConflicts.patch {
                 MachineArchitecture.X86_64
             )
         }
+    }
+}
+extraJavaModuleInfo {
+    failOnAutomaticModules = true
+    failOnModifiedDerivedModuleNames = true
+    skipLocalJars = true
+
+    module("org.openjfx:javafx-base", "javafx.base") {
+        patchRealModule()
+        exportAllPackages()
     }
 }
