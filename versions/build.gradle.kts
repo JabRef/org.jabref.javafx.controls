@@ -15,6 +15,9 @@ val arch =
     DefaultNativePlatform.getCurrentArchitecture()
 val javafx = 24
 
+dependencies {
+
+}
 
 dependencies.constraints {
     api("org.openjfx:javafx-base:$javafx")

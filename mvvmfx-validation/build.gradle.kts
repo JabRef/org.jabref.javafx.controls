@@ -13,7 +13,6 @@ if (project.findProperty("tagbuild")?.toString() != "true") {
 }
 
 
-group = "org.jabref.javafx.controls"
 
 dependencies {
     implementation("org.openjfx:javafx-base")
