@@ -57,9 +57,5 @@ extraJavaModuleInfo {
     failOnModifiedDerivedModuleNames = true
     skipLocalJars = true
 
-    module("org.openjfx:javafx-base", "javafx.base") {
-        patchRealModule()
-        exportAllPackages()
-    }
 
 }
