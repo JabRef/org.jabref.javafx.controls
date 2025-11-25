@@ -14,7 +14,7 @@ jvmDependencyConflicts {
 // Source: https://github.com/jjohannes/java-module-system/blob/be19f6c088dca511b6d9a7487dacf0b715dbadc1/gradle/plugins/src/main/kotlin/metadata-patch.gradle.kts#L14-L22
 jvmDependencyConflicts.patch {
     listOf(
-        "base",
+        "base", "controls", "graphics"
     ).forEach { jfxModule ->
         module(
             "org.openjfx:javafx-$jfxModule"
