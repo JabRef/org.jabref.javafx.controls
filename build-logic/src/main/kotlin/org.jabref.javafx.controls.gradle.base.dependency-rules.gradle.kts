@@ -4,12 +4,6 @@ plugins {
     id("org.gradlex.java-module-dependencies") // only for mappings at the moment
 }
 
-javaModuleDependencies {
-    // TODO remove to translate 'requires' from 'module-info.java' to Gradle dependencies
-    //      and remove 'dependencies {}' block from build.gradle files
-    analyseOnly = true // makes no difference
-}
-
 jvmDependencyConflicts {
     consistentResolution {
         platform(":versions")
