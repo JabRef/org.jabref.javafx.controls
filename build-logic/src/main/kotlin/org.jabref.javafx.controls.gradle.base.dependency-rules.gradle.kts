@@ -1,7 +1,7 @@
 plugins {
     id("org.gradlex.extra-java-module-info")
     id("org.gradlex.jvm-dependency-conflict-resolution")
-    id("org.gradlex.java-module-dependencies") // only for mappings at the moment
+    id("org.gradlex.java-module-dependencies")
 }
 
 jvmDependencyConflicts {
