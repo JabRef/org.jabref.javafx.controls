@@ -14,11 +14,6 @@ if (project.findProperty("tagbuild")?.toString() != "true") {
 
 
 
-dependencies {
-    implementation("org.openjfx:javafx-base")
-}
-
-
 mavenPublishing {
     configure(
         JavaLibrary(
