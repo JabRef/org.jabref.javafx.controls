@@ -56,6 +56,4 @@ extraJavaModuleInfo {
     failOnAutomaticModules = true
     failOnModifiedDerivedModuleNames = true
     skipLocalJars = true
-
-
 }

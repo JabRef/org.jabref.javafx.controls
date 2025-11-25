@@ -37,3 +37,4 @@ testlogger {
 configurations.testCompileOnly {
     extendsFrom(configurations.compileOnly.get())
 }
+

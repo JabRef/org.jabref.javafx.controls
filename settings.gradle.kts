@@ -10,7 +10,7 @@ plugins {
     id("org.jabref.javafx.controls.gradle.build")
 }
 
-rootProject.name = "jabref.controls"
+rootProject.name = "org.jabref.javafx.controls"
 
 javaModules {
     directory(".")

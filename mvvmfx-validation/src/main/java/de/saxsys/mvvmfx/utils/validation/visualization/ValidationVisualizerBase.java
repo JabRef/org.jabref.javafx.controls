@@ -51,9 +51,7 @@ public abstract class ValidationVisualizerBase implements ValidationVisualizer {
 			// Monitor the message list and always display the highest message.
 			// Note: there could be more than one change on the message list, but only the highest
 			// message is of interest in this case.
-			result.getMessages().addListener((ListChangeListener<ValidationMessage>) c -> {
-				Platform.runLater(() -> applyVisualization(control, result.getHighestMessage(), required));
-			});
+			result.getMessages().addListener((ListChangeListener<ValidationMessage>) c -> Platform.runLater(() -> applyVisualization(control, result.getHighestMessage(), required)));
 		});
 	}
 
