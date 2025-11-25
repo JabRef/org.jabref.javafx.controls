@@ -8,11 +8,6 @@ javaPlatform {
     allowDependencies()
 }
 
-// Based on https://stackoverflow.com/questions/11235614/how-to-detect-the-current-os-from-gradle
-val os =
-    DefaultNativePlatform.getCurrentOperatingSystem()
-val arch =
-    DefaultNativePlatform.getCurrentArchitecture()
 val javafx = 24
 
 dependencies {
