@@ -49,10 +49,16 @@ publishing {
     }
 }
 
+val signingKey = System.getenv("SIGNING_KEY")
+val signingPassword = System.getenv("SIGNING_PASSWORD")
+
 signing {
-    setRequired { isReleaseVersion }
-    useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
-    sign(publishing.publications["mavenJava"])
+    if (isReleaseVersion && signingKey != null && signingPassword != null) {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign(publishing.publications["mavenJava"])
+    } else {
+        logger.warn("WARNING: Signing skipped - SIGNING_KEY or SIGNING_PASSWORD not set")
+    }
 }
 
 nexusPublishing {
