@@ -38,7 +38,7 @@ jobs:
         run: gradle build
 
       - name: Publish to Sonatype (for snapshots) or to Maven Central
-        run: gradle publish closeAndReleaseStagingRepositories
+        run: gradle -i publish closeAndReleaseStagingRepositories
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
