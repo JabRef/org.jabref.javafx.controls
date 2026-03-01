@@ -53,7 +53,7 @@ val signingKey = System.getenv("SIGNING_KEY")
 val signingPassword = System.getenv("SIGNING_PASSWORD")
 
 signing {
-    if (isReleaseVersion && signingKey != null && signingPassword != null) {
+    if (signingKey != null && signingPassword != null) {
         useInMemoryPgpKeys(signingKey, signingPassword)
         sign(publishing.publications["mavenJava"])
     } else {
