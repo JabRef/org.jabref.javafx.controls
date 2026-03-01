@@ -29,8 +29,8 @@ publishing {
                 url = "https://github.com/JabRef/org.jabref.javafx.controls"
                 licenses {
                     license {
-                        name = "MIT"
-                        url = "https://opensource.org/licenses/MIT"
+                        name = "The Apache License, Version 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0"
                         distribution = "repo"
                     }
                 }
