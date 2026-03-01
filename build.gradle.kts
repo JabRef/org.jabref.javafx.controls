@@ -1,52 +1,67 @@
 plugins {
     id("org.jabref.javafx.controls.gradle.base.repositories")
     id("org.jabref.javafx.controls.gradle.feature.compile")
-    id("com.vanniktech.maven.publish") version "0.35.0"
+
+    id("maven-publish")
+    id("signing")
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
+group = "org.jabref"
 var version: String = "0.1.0-SNAPSHOT"
+val isReleaseVersion = !version.endsWith("SNAPSHOT")
 
-mavenPublishing {
-  configure(JavaLibrary(
-    javadocJar = JavadocJar.Javadoc(),
-    sourcesJar = true,
-  ))
-
-  publishToMavenCentral()
-  signAllPublications()
-
-  coordinates("org.jabref", "org.jabref.javafx.controls", version)
-
-  pom {
-    name.set("jablib")
-    description.set("JabRef's JavaFX additions")
-    inceptionYear.set("2025")
-    url.set("https://github.com/JabRef/org.jabref.javafx.controls//")
-    licenses {
-      license {
-        name.set("MIT")
-        url.set("https://github.com/JabRef/org.jabref.javafx.controls//blob/main/LICENSE")
-      }
-    }
-    developers {
-      developer {
-        id.set("jabref")
-        name.set("JabRef Developers")
-        url.set("https://github.com/JabRef/")
-      }
-    }
-    scm {
-        url.set("https://github.com/JabRef/org.jabref.javafx.controls/")
-        connection.set("scm:git:https://github.com/JabRef/org.jabref.javafx.controls/")
-        developerConnection.set("scm:git:git@github.com:JabRef/org.jabref.javafx.controls/.git")
-    }
-  }
+java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+    withJavadocJar()
+    withSourcesJar()
 }
 
-// Include the BOM in the generated POM ("inline" / "inlining")
-// Source: https://github.com/gradle/gradle/issues/10861#issuecomment-3027387345
-publishing.publications.withType<MavenPublication>().configureEach {
-    versionMapping {
-        allVariants { fromResolutionResult() }
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "javafx.controls"
+            from(components["java"])
+            pom {
+                name = "org.jabref.javafx.controls"
+                description = "JabRef's JavaFX additions"
+                url = "https://github.com/JabRef/org.jabref.javafx.controls"
+                licenses {
+                    license {
+                        name = "MIT"
+                        url = "https://opensource.org/licenses/MIT"
+                        distribution = "repo"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "Siedlerchr"
+                    }
+                }
+                scm {
+                    url = "https://github.com/JabRef/org.jabref.javafx.controls"
+                    connection = "scm:git:git://github.com/JabRef/org.jabref.javafx.controls.git"
+                    developerConnection = "scm:git:git@github.com:JabRef/org.jabref.javafx.controls.git"
+                }
+            }
+        }
+    }
+}
+
+signing {
+    isRequired = isReleaseVersion
+    useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
+    sign(publishing.publications["mavenJava"])
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username = System.getenv("OSSRH_USERNAME")
+            password = System.getenv("OSSRH_TOKEN")
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+        }
     }
 }
