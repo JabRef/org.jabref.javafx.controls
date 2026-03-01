@@ -50,4 +50,3 @@ publishing.publications.withType<MavenPublication>().configureEach {
         allVariants { fromResolutionResult() }
     }
 }
-
