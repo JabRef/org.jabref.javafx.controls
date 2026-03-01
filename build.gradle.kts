@@ -52,6 +52,8 @@ publishing {
 val signingKey = System.getenv("SIGNING_KEY")
 val signingPassword = System.getenv("SIGNING_PASSWORD")
 
+logger.warn("DEBUG: SIGNING_KEY=${signingKey?.take(1) ?: "null"}, SIGNING_PASSWORD=${signingPassword?.take(1) ?: "null"}")
+
 signing {
     if (signingKey != null && signingPassword != null) {
         useInMemoryPgpKeys(signingKey, signingPassword)
