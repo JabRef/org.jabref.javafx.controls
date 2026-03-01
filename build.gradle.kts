@@ -50,7 +50,7 @@ publishing {
 }
 
 signing {
-    isRequired = isReleaseVersion
+    setRequired { isReleaseVersion }
     useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
     sign(publishing.publications["mavenJava"])
 }
